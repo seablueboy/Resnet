@@ -14,3 +14,9 @@ https://www.cnblogs.com/wzyuan/p/9880342.html
 
 PyTorch-网络的创建，预训练模型的加载
 https://www.cnblogs.com/wangguchangqing/p/11058525.html
+
+pytorch之迁移学习
+https://blog.csdn.net/weixin_40123108/article/details/85238355
+
+【Pytorch】使用ResNet-50迁移学习进行图像分类训练
+https://blog.csdn.net/heiheiya/article/details/103028543
