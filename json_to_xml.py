@@ -94,6 +94,9 @@ all_images_path='D:/cleaned_data/J7A02/threshold06'
 f = open('03_09.json',"r",encoding="utf-8")
 json_data = json.load(f)
 f.close()
+if os.path.exists("./save"):
+    shutil.rmtree('./save')
+os.mkdir('./save')
 #print(type(json_list))
 # k=json_data.keys()
 # print(json_data["annotations"])
