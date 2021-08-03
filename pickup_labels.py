@@ -184,26 +184,64 @@
 #         gen_xml_flie(object_list,image_path,w,h)
 
 import os
+import fileinput
 fd=open('./labels_train.txt')
+# label_file='./labels_train.txt'
 fd_new=open('./labels_train_new.txt','w')
-images_path='./images_train'
-labels=[]
-for line in fd:
-    #image_name=line.split(' ')[0].replace('./images_train/','')
-    labels.append(line)
+images_path='./images_train/mask'
+# labels=[]
+# for line in fd:
+#     #image_name=line.split(' ')[0].replace('./images_train/','')
+#     labels.append(line)
     # print (line)
 # print('#####################################')
 # print (labels)
 file_num=0
+file_names=[]
 for root, dirs, files in os.walk(images_path):
     for file in files:
+        file_names.append(file)
+for line in fd:
+    if line.split(" ")[0].split("/")[-1] in file_names:
+        print(line.strip().split(" ")[-1])
+        # print(type(line))
+        # line.replace(line.strip().split(" ")[-1],"mask")
+        # print(type(line.strip().split(" ")))
+        linelist=line.strip().split(" ")
+        print(type(linelist[0]))
+        # print(linelist[0].replace(linelist[0].split("/")[2],'mask'))
+        linelist[0]=linelist[0].replace(linelist[0].split("/")[2],'mask')
+        # print(linelist[0].split("/")[2])
+        linelist[-1] = 'mask'
+        line=" ".join(linelist)+"\n"
+        # line=str(linelist)
+        # print(line)
+        # line.strip().split(" ")[-1]='mask'
+        print(linelist)
+        # print(line_join)
+        print(line)
+    fd_new.write(line)
+
+fd_new.close()
+fd.close()
+
+        # print(line.split(" ")[0].split("/")[-1])
+
+        # print(line.split(" ")[-1])
+
+    # print(line.split(" ")[0].split("/")[-1])
+
+
+
         # print(file)
-        for label in labels:
-            if file == label.split(' ')[0].replace('./images_train/',''):
-                fd_new.write(label)
-                print(file)
-                file_num+=1
-                print((file_num))
+        # for label in labels:
+        #     # if file == label.split(' ')[0].replace('./images_train/',''):
+        #     if file==label.split(" ")[0].split("/")[-1]:
+
+        #         fd_new.write(label)
+        #         print(file)
+        #         file_num+=1
+        #         print((file_num))
 
 #             #save image
 #             image_path=os.path.join(root,file)
